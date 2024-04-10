@@ -1,0 +1,149 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    .sd-simple-text-{{_.id}} {
+      padding-top: {{padding.top.value}}{{padding.top.type}};
+      padding-right: {{padding.right.value}}{{padding.right.type}};
+      padding-bottom: {{padding.bottom.value}}{{padding.bottom.type}};
+      padding-left: {{padding.left.value}}{{padding.left.type}};
+
+      margin-top: {{margin.top.value}}{{margin.top.type}};
+      margin-right: {{margin.right.value}}{{margin.right.type}};
+      margin-bottom: {{margin.bottom.value}}{{margin.bottom.type}};
+      margin-left: {{margin.left.value}}{{margin.left.type}};
+
+      {{#if textStyle '===' undefined}}
+        color: {{fontColor}};
+        font-family: {{fontFamily}};
+        font-weight: {{fontWeight}};
+        font-size: {{fontSize.value}}{{fontSize.type}};
+        min-height: {{fontSize.value}}{{fontSize.type}};
+      {{/if}}
+    }
+
+    .sd-simple-text-{{_.id}} * {
+      margin: 0;
+      padding: 0;
+
+      {{#unless textStyle '!==' 'custom'}}
+        color: {{fontColor}};
+        font-family: {{fontFamily}};
+        font-weight: {{fontWeight}};
+        font-size: {{fontSize.value}}{{fontSize.type}};
+        min-height: {{fontSize.value}}{{fontSize.type}};
+      {{/unless}}
+
+      {{#if textStyle '===' 'default'}}
+        color: #333333;
+        font-family: Montserrat;
+        font-weight: 500;
+        font-size: 24px;
+      {{/if}}
+    }
+
+    .sd-simple-text-{{_.id}} {
+      {{#if alignment.horizontal '===' 'center'}}
+        text-align: center;
+      {{else if alignment.horizontal '===' 'left'}}
+        text-align: left;
+      {{else if alignment.horizontal '===' 'right'}}
+        text-align: right;
+      {{/if}}
+    }
+
+    #sd-simple-text-editable-{{_.id}} {
+      min-width: 14px;
+      line-height: 1.5;
+      display: inline-block;
+    }
+
+    #sd-simple-text-editable-{{_.id}}[data-edit-mode="true"]:hover,
+    #sd-simple-text-editable-{{_.id}}[data-edit-mode="true"]:active,
+    #sd-simple-text-editable-{{_.id}}[data-edit-mode="true"]:focus {
+      outline: 1px dashed #3C64F4;
+    }
+
+    #sd-simple-text-editable-{{_.id}} strong,
+    #sd-simple-text-editable-{{_.id}} strong * {
+      font-weight: bold;
+    }
+</style>
+
+<div class="sd-simple-text-{{_.id}} {{#if textStyle}}{{#if textStyle '!==' 'custom'}} {{textStyle}}{{/if}}{{/if}}">
+    <div id="sd-simple-text-editable-{{_.id}}" data-edit-mode="{{_.pageBuilderData.previewState.editMode}}">
+        {{{textContent}}}
+    </div>
+</div>
+
+{{#if _.context.isEditorMode '===' true}}
+<script type="text/javascript">
+    (function () {
+        var editMode = false;
+        var selector = "sd-simple-text-editable-{{_.id}}";
+        var element = document.getElementById(selector);
+        if (!element) { return; }
+
+        function initializeContentEditableText() {
+            if (window.BigCommerce && window.BigCommerce.inlineEditor && window.BigCommerce.sendWidgetUpdate) {
+                editMode = true;
+                window.BigCommerce.inlineEditor.init({
+                    selector: "#" + selector,
+                    editMode: editMode,
+                    onBlur: function (content) {
+                        element.innerHtml = content;
+                        flushChanges(content);
+                    },
+                    onKeyup: flushChanges,
+                    toolbarItems: ['bold', 'italic', 'underline', 'strikethrough', 'link']
+                });
+            }
+        };
+
+        function flushChanges(content) {
+            var props = {
+                "textContent": content
+            };
+            window.BigCommerce.sendWidgetUpdate(props, "{{_.id}}");
+        }
+
+        function setEditMode(data) {
+            editMode = data.editMode;
+            element.dataset.editMode = editMode;
+
+            if (window.BigCommerce && window.BigCommerce.inlineEditor) {
+                if (editMode) {
+                    initializeContentEditableText()
+                } else {
+                    window.BigCommerce.inlineEditor.remove("#" + selector);
+                }
+            }
+        }
+
+        window.addEventListener('message', function (event) {
+            try {
+                var data = JSON.parse(event.data);
+            } catch (error) {
+                return;
+            }
+
+            [{
+                action: 'sdk-loaded',
+                initiator: 'PAGE_BUILDER',
+                callback: initializeContentEditableText
+            }, {
+                action: 'toggle-edit-mode',
+                initiator: 'PAGE_BUILDER',
+                callback: setEditMode
+            }].forEach(function (handler) {
+                if (data.action === handler.action && data.initiator === handler.initiator) {
+                    try { handler.callback(data); } catch (error) { }
+                }
+            })
+        });
+
+        initializeContentEditableText();
+    })();
+</script>
+{{/if}}

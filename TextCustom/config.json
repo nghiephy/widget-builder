@@ -1,0 +1,51 @@
+{
+  "textContent": "You can use this widget to input text into the page.",
+  "fontFamily": "Rajdhani, sans-serif",
+  "fontWeight": "500",
+  "fontSize": {
+    "value": 24,
+    "type": "px"
+  },
+  "fontColor": "#333333",
+  "textStyle": "custom",
+  "alignment": {
+    "horizontal": "center",
+    "vertical": "middle"
+  },
+  "margin": {
+    "top": {
+      "value": "0",
+      "type": "px"
+    },
+    "right": {
+      "value": "0",
+      "type": "px"
+    },
+    "bottom": {
+      "value": "0",
+      "type": "px"
+    },
+    "left": {
+      "value": "0",
+      "type": "px"
+    }
+  },
+  "padding": {
+    "top": {
+      "value": "0",
+      "type": "px"
+    },
+    "right": {
+      "value": "0",
+      "type": "px"
+    },
+    "bottom": {
+      "value": "0",
+      "type": "px"
+    },
+    "left": {
+      "value": "0",
+      "type": "px"
+    }
+  }
+}

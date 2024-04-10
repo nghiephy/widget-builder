@@ -1,0 +1,243 @@
+
+<style>
+    .beautify__customerReviews p {
+        margin-bottom: .75rem;
+    }
+
+    .beautify__customerReviews ._list {
+        display: flex;
+        justify-content: stretch;
+        list-style: none;
+    }
+
+    .beautify__customerReviews ._list .slick-prev,
+    .beautify__customerReviews ._list .slick-next {
+        height: auto;
+    }
+
+    .beautify__customerReviews ._list .slick-prev:before,
+    .beautify__customerReviews ._list .slick-next:before {
+        content: '';
+    }
+
+    @media (min-width: 801px) {
+        .beautify__customerReviews ._list .slick-prev {
+            left: -.75rem;
+        }
+
+        .beautify__customerReviews ._list .slick-next {
+            right: -.75rem;
+        }
+    }
+
+    @media (min-width: 1201px) {
+        .beautify__customerReviews ._list .slick-prev {
+            left: -40px;
+        }
+
+        .beautify__customerReviews ._list .slick-next {
+            right: -40px;
+        }
+    }
+
+    .beautify__customerReviews ._list:not(.slick-slider) {
+        overflow-x: auto;
+    }
+
+    .beautify__customerReviews ._list:not(.slick-slider) ._item {
+        flex: 1 0 auto;
+    }
+
+    .beautify__customerReviews ._item {
+        text-align: center;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 0 .75rem;
+        height: auto;
+    }
+
+    .beautify__customerReviews ._avatar {
+        width: 92px;
+        height: 92px;
+        margin: 0 auto 1.5rem;
+        display: block;
+        position: relative;
+    }
+
+    .beautify__customerReviews ._heading {
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .beautify__customerReviews ._rating .icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .beautify__customerReviews ._content {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .beautify__customerReviews ._author {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 700;
+    }
+
+    .beautify__customerReviews .slick-list {
+        flex: 1;
+    }
+
+    .beautify__customerReviews .slick-track {
+        display: flex;
+        justify-content: stretch;
+        margin: 0;
+    }
+
+    .beautify__customerReviews .slick-dots {
+        position: absolute;
+    }
+
+    @media (max-width: 800px) {
+        .beautify__customerReviews {
+            padding: .75rem 0 1.5rem;
+        }
+
+        .beautify__customerReviews .container {
+            padding: 0;
+        }
+
+        .beautify__customerReviews ._item {
+            width: 275px;
+        }
+
+        .beautify__customerReviews .slick-dots {
+            bottom: -3rem;
+        }
+    }
+
+    @media (min-width: 801px) {
+        .beautify__customerReviews {
+            padding: 1.5rem 0;
+        }
+
+        .beautify__customerReviews ._list {
+            margin-bottom: 0;
+        }
+
+        .beautify__customerReviews ._item {
+            width: calc(33.3333% - 1.5rem);
+        }
+
+        .beautify__customerReviews .slick-dots {
+            display: none;
+        }
+
+        .beautify__customerReviews ._heading {
+            font-size: 18px;
+        }
+
+        .beautify__customerReviews ._content {
+            font-size: 14px;
+        }
+
+        .beautify__customerReviews ._author {
+            font-size: 14px;
+        }
+    }
+
+    {{#any items useContainer=true}}{{else}}
+    .beautify__customerReviews ._list .slick-prev {
+        left: 0;
+    }
+
+    .beautify__customerReviews ._list .slick-next {
+        right: 0;
+    }
+
+    {{/any}}
+
+    {{#each items}}
+    .beautify__customerReviews [data-item="{{@index}}"] ._avatar {
+        width: {{avatar.width.value}}{{avatar.width.type}};
+        height: {{avatar.height.value}}{{avatar.height.type}};
+    }
+
+    {{/each}}
+</style>
+
+<div class="beautify__section beautify__customerReviews beautify__customerReviews--{{_.id}}" id="beautify__customerReviews-{{_.id}}" data-test-theme="{{#if items.0.themeName '!=' 'custom'}}{{items.0.themeName}}{{else}}{{items.0.themeNameCustom}}{{/if}}">
+    {{#any items useContainer=true}}
+    <div class="container">
+        {{/any}}
+        <div class="_list" data-carousel-config='{
+            "arrows": false,
+            "dots": true,
+            "mobileFirst": true,
+            "slidesToShow": {{cols_mb}},
+            "slidesToScroll": 1,
+            "initialSlide": 1,
+            "variableWidth": true,
+            "infinite": true,
+            "centerMode": true,
+            "centerPadding": 0,
+            "responsive": [{
+                "breakpoint": 801,
+                "settings": {
+                    "arrows": true,
+                    "dots": false,
+                    "slidesToShow": {{cols_desktop}},
+                    "slidesToScroll": 1,
+                    "variableWidth": false
+                }
+            }]
+        }'>
+            {{#each items}}
+            <div class="_item" data-item="{{@index}}" data-test-theme="{{#if themeName '!=' 'custom'}}{{themeName}}{{else}}{{themeNameCustom}}{{/if}}">
+                {{#if avatar.type '!==' 'hide'}}
+                <span class="_avatar"><img data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="{{author}}"
+                        {{#if avatar.type '==' 'image'}}
+                        data-src="{{avatar.image.src}}" class="lazyload"
+                        {{else}}
+                        style="background-color:{{avatar.color}};width:100%;height:100%;border-radius:50%"
+                        {{/if}}
+                    ></span>
+                {{/if}}
+                <p class="_heading" data-editable-content="items.{{@index}}.title">{{{title}}}</p>
+                <p class="_content" data-editable-content="items.{{@index}}.content">{{{content}}}</p>
+                <p class="_author" data-editable-content="items.{{@index}}.author">{{{author}}}</p>
+                {{#if rating '!==' 'hide'}}
+                <p class="_rating">
+                    <span class="rating--small">
+                        {{#for 1 5}}
+                        {{#if ../rating '>=' $index}}
+                        <span class="icon icon--ratingFull"><svg><use xlink:href="#icon-star" /></svg></span>
+                        {{else}}
+                        <span class="icon icon--ratingEmpty"><svg><use xlink:href="#icon-star" /></svg></span>
+                        {{/if}}
+                        {{/for}}
+                    </span>
+                </p>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+        {{#any items useContainer=true}}
+    </div>
+    {{/any}}
+</div>
+
+<script>
+    (function() {
+        window.PapaThemesWidgetCustomerReviewsUUIDs = window.PapaThemesWidgetCustomerReviewsUUIDs || [];
+        window.PapaThemesWidgetCustomerReviewsUUIDs.push({
+            elementId: 'beautify__customerReviews-{{_.id}}',
+            widgetId: '{{_.id}}',
+            data: {{{json .}}}
+        });
+    })();
+</script>
+<script src="https://d2lz7267o80s75.cloudfront.net/widgets/0.2.1/customer-reviews.js" async defer></script>
+</body>
+</html>

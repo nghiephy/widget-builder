@@ -1,0 +1,307 @@
+[
+  {
+      "type": "array",
+      "label": "Reviews",
+      "id": "items",
+      "defaultCount": 4,
+      "entryLabel": "Review",
+      "thumbnail": {
+          "conditionKey": "avatar.type",
+          "thumbnailConditions": {
+              "color": {
+                  "type": "color",
+                  "valueKey": "avatar.color"
+              },
+              "image": {
+                  "type": "image",
+                  "valueKey": "avatar.image.src"
+              }
+          }
+      },
+      "schema": [
+          {
+              "type": "tab",
+              "label": "Content",
+              "sections": [
+                  {
+                      "settings": [
+                          {
+                              "type": "element",
+                              "label": "Avatar",
+                              "id": "avatar",
+                              "typeMeta": {
+                                  "controls": {
+                                      "advanced": {
+                                          "label": "Avatar",
+                                          "settings": [
+                                              {
+                                                  "type": "select",
+                                                  "label": "Type",
+                                                  "id": "type",
+                                                  "default": "color",
+                                                  "typeMeta": {
+                                                      "selectOptions": [
+                                                          {
+                                                              "label": "Image",
+                                                              "value": "image"
+                                                          },
+                                                          {
+                                                              "label": "Color",
+                                                              "value": "color"
+                                                          },
+                                                          {
+                                                              "label": "Hide",
+                                                              "value": "hide"
+                                                          }
+                                                      ]
+                                                  }
+                                              },
+                                              {
+                                                  "type": "color",
+                                                  "label": "Color",
+                                                  "id": "color",
+                                                  "default": "#e8e8e8",
+                                                  "conditional": {
+                                                      "key": "type",
+                                                      "operator": "IN",
+                                                      "value": [
+                                                          "color"
+                                                      ]
+                                                  }
+                                              },
+                                              {
+                                                  "type": "imageManager",
+                                                  "label": "Image",
+                                                  "id": "image",
+                                                  "default": {
+                                                      "src": "",
+                                                      "type": "IMAGE_MANAGER"
+                                                  },
+                                                  "conditional": {
+                                                      "key": "type",
+                                                      "operator": "IN",
+                                                      "value": [
+                                                          "image"
+                                                      ]
+                                                  }
+                                              },
+                                              {
+                                                  "type": "number",
+                                                  "label": "Width",
+                                                  "id": "width",
+                                                  "default": {
+                                                      "value": 92,
+                                                      "type": "px"
+                                                  },
+                                                  "typeMeta": {
+                                                      "parseType": "integer"
+                                                  },
+                                                  "conditional": {
+                                                      "key": "type",
+                                                      "operator": "IN",
+                                                      "value": [
+                                                          "image",
+                                                          "color"
+                                                      ]
+                                                  }
+                                              },
+                                              {
+                                                  "type": "number",
+                                                  "label": "Height",
+                                                  "id": "height",
+                                                  "default": {
+                                                      "value": 92,
+                                                      "type": "px"
+                                                  },
+                                                  "typeMeta": {
+                                                      "parseType": "integer"
+                                                  },
+                                                  "conditional": {
+                                                      "key": "type",
+                                                      "operator": "IN",
+                                                      "value": [
+                                                          "image",
+                                                          "color"
+                                                      ]
+                                                  }
+                                              }
+                                          ]
+                                      }
+                                  }
+                              }
+                          },
+                          {
+                              "type": "input",
+                              "label": "Title",
+                              "id": "title",
+                              "default": "Only the best!"
+                          },
+                          {
+                              "type": "text",
+                              "label": "Content",
+                              "id": "content",
+                              "default": "Honestly, I will never use another brand again! the pro point lashes are the BEST!! my last order was $600 and she included a free lash cleanser (which is also the best i’ve ever used)!"
+                          },
+                          {
+                              "type": "select",
+                              "label": "Rating",
+                              "id": "rating",
+                              "default": 5,
+                              "typeMeta": {
+                                  "selectOptions": [
+                                      {
+                                          "label": "Hide",
+                                          "value": "hide"
+                                      },
+                                      {
+                                          "label": "1",
+                                          "value": "1"
+                                      },
+                                      {
+                                          "label": "2",
+                                          "value": "2"
+                                      },
+                                      {
+                                          "label": "3",
+                                          "value": "3"
+                                      },
+                                      {
+                                          "label": "4",
+                                          "value": "4"
+                                      },
+                                      {
+                                          "label": "5",
+                                          "value": "5"
+                                      }
+                                  ]
+                              }
+                          },
+                          {
+                              "type": "input",
+                              "label": "Author",
+                              "id": "author",
+                              "default": "Sophie Hanan - 06/11"
+                          },
+                          {
+                              "type": "select",
+                              "label": "Style for theme",
+                              "id": "themeName",
+                              "default": "custom",
+                              "typeMeta": {
+                                  "selectOptions": [
+                                      {
+                                          "label": "Beautify Grocery",
+                                          "value": "beautify_grocery"
+                                      },
+                                      {
+                                          "label": "Beautify Furniture",
+                                          "value": "beautify_furniture"
+                                      },
+                                      {
+                                          "label": "InHealth",
+                                          "value": "inhealth"
+                                      },
+                                      {
+                                          "label": "Other Themes",
+                                          "value": "custom"
+                                      }
+                                  ]
+                              }
+                          },
+                          {
+                              "type": "input",
+                              "label": "Your theme name",
+                              "id": "themeNameCustom",
+                              "default": "",
+                              "conditional": {
+                                  "key": "themeName",
+                                  "operator": "IN",
+                                  "value": [
+                                      "custom"
+                                  ]
+                              }
+                          },
+                          {
+                              "type": "boolean",
+                              "label": "Display reviews in container div",
+                              "id": "useContainer",
+                              "default": true
+                          }
+                      ]
+                  }
+              ]
+          }
+      ]
+  },
+  {
+    "type": "tab",
+    "label": "Common Settings",
+    "sections": [
+      {
+        "label": "Common Settings",
+        "settings": [
+          {
+            "type": "select",
+            "label": "Number Columns Desktop",
+            "id": "cols_desktop",
+            "default": 3,
+            "typeMeta": {
+              "selectOptions": [
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                },
+                {
+                  "label": "3",
+                  "value": "3"
+                },
+                {
+                  "label": "4",
+                  "value": "4"
+                },
+                {
+                  "label": "5",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          {
+            "type": "select",
+            "label": "Number Columns Mobile",
+            "id": "cols_mb",
+            "default": 1,
+            "typeMeta": {
+              "selectOptions": [
+                {
+                  "label": "1",
+                  "value": "1"
+                },
+                {
+                  "label": "2",
+                  "value": "2"
+                },
+                {
+                  "label": "3",
+                  "value": "3"
+                },
+                {
+                  "label": "4",
+                  "value": "4"
+                },
+                {
+                  "label": "5",
+                  "value": "5"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

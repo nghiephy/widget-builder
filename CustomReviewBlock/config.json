@@ -1,0 +1,102 @@
+{
+  "items": [
+    {
+      "avatar": {
+        "type": "color",
+        "color": "#e8e8e8",
+        "image": {
+          "src": "",
+          "type": "IMAGE_MANAGER"
+        },
+        "width": {
+          "value": 92,
+          "type": "px"
+        },
+        "height": {
+          "value": 92,
+          "type": "px"
+        }
+      },
+      "title": "Only the best!",
+      "content": "Honestly, I will never use another brand again! the pro point lashes are the BEST!! my last order was $600 and she included a free lash cleanser (which is also the best i’ve ever used)!",
+      "rating": 5,
+      "author": "Sophie Hanan - 06/11",
+      "themeName": "custom",
+      "useContainer": true
+    },
+    {
+      "avatar": {
+        "type": "color",
+        "color": "#e8e8e8",
+        "image": {
+          "src": "",
+          "type": "IMAGE_MANAGER"
+        },
+        "width": {
+          "value": 92,
+          "type": "px"
+        },
+        "height": {
+          "value": 92,
+          "type": "px"
+        }
+      },
+      "title": "Only the best!",
+      "content": "Honestly, I will never use another brand again! the pro point lashes are the BEST!! my last order was $600 and she included a free lash cleanser (which is also the best i’ve ever used)!",
+      "rating": 5,
+      "author": "Sophie Hanan - 06/11",
+      "themeName": "custom",
+      "useContainer": true
+    },
+    {
+      "avatar": {
+        "type": "color",
+        "color": "#e8e8e8",
+        "image": {
+          "src": "",
+          "type": "IMAGE_MANAGER"
+        },
+        "width": {
+          "value": 92,
+          "type": "px"
+        },
+        "height": {
+          "value": 92,
+          "type": "px"
+        }
+      },
+      "title": "Only the best!",
+      "content": "Honestly, I will never use another brand again! the pro point lashes are the BEST!! my last order was $600 and she included a free lash cleanser (which is also the best i’ve ever used)!",
+      "rating": 5,
+      "author": "Sophie Hanan - 06/11",
+      "themeName": "custom",
+      "useContainer": true
+    },
+    {
+      "avatar": {
+        "type": "color",
+        "color": "#e8e8e8",
+        "image": {
+          "src": "",
+          "type": "IMAGE_MANAGER"
+        },
+        "width": {
+          "value": 92,
+          "type": "px"
+        },
+        "height": {
+          "value": 92,
+          "type": "px"
+        }
+      },
+      "title": "Only the best!",
+      "content": "Honestly, I will never use another brand again! the pro point lashes are the BEST!! my last order was $600 and she included a free lash cleanser (which is also the best i’ve ever used)!",
+      "rating": 5,
+      "author": "Sophie Hanan - 06/11",
+      "themeName": "custom",
+      "useContainer": true
+    }
+  ],
+  "cols_desktop": 3,
+  "cols_mb": 1
+}
